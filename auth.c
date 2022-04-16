@@ -598,7 +598,7 @@ int dogcom(int try_times) {
     // start dogcoming
     if (strcmp(mode, "dhcp") == 0) {
         int login_failed_attempts = 0;
-        int try_JLUversion = 0;
+        int try_JLUversion = 1;
         for (int try_counter = 0; try_counter < try_times; try_counter++) {
             if (eternal_flag) {
                 try_counter = 0;
@@ -616,7 +616,7 @@ int dogcom(int try_times) {
                 if (login_failed_attempts > 2) {
                     try_JLUversion = 1;
                 }
-                if (!dhcp_login(sockfd, dest_addr, seed, auth_information, 1)) {
+                if (!dhcp_login(sockfd, dest_addr, seed, auth_information, try_JLUversion)) {
                     int keepalive_counter = 0;
                     int keepalive_try_counter = 0;
                     int first = 1;
